@@ -1,0 +1,65 @@
+@media (min-width: 576px) {
+	.container {
+		max-width: 540px;
+	}
+}
+
+@media (min-width: 768px) {
+	.container {
+		max-width: 720px;
+	}
+}
+
+@media (min-width: 992px) {
+	.container {
+		max-width: 960px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1140px;
+	}
+}
+
+.container-fluid {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+body {
+	margin: 0;
+	font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	text-align: left;
+	background-color: #fafafa;
+}
+
+p {
+	margin: 10px 0 !important;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+	align-content: center;
+}
+
+.login-container {
+	width: 400px;
+	margin-top: 50px;
+	text-align: center;
+}
+
+.card {
+	font-size: 0.875rem;
+	margin-left: 10px;
+}
