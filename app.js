@@ -10,8 +10,6 @@ const MongoStore = require('connect-mongo').default
 const moment = require('moment');
 const connectDB = require('./config/db');
 
-
-
 // Load config
 dotenv.config({path: './config/config.env'})
 

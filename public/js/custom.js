@@ -1,115 +1,141 @@
-const { json } = require('express');
+try {
 
-$(document).ready(function () {
-    $.ajax({
-		type: 'GET',
-		url:
-			'https://wakatime.com/share/@dxnger_/2ba286ba-bc04-420a-abd0-d717a7007160.json',
-		dataType: 'jsonp',
-		success: function (response) {
+	const api_url = `/stats`
+	fetch(api_url)
+	.then(response => response.json())
+	.then(data => {
+		console.log(data);
 
-            var names = response.data.map(function (e) {
-				return e.name;
-			});
+		const colors = [
+			'#f1e05a',
+			'#e44b23',
+			'#16ce40',
+			'#563d7c',
+			'#1f9aef',
+			'#dc9658',
+			'#E95FC6',
+		];
 
-            var color = response.data.map(function (e) {
-				return e.color;
-			});
+		//Languages
+		const names = data.languages.map(function (e) {
+			return e.name;
+		});
 
-			var percent = response.data.map(function (e) {
-				return e.percent;
-			});
+		const percent = data.languages.map(function (e) {
+			return e.percent;
+		});
 
-			let chartLang = document.getElementById('myChart').getContext('2d');
+		let chartLang = document.getElementById('myChart').getContext('2d');
 
-			let langu = new Chart(chartLang, {
-				type: 'doughnut',
-				data: {
-					labels: names,
-					datasets: [
-						{
-							data: percent,
-							backgroundColor: color,
-						},
-					],
-				},
-				options: {
-					legend: {
-                        position: 'left',
-                        labels: {
-                            boxWidth: 3,
-
-                        },
-                        fullWidth: true
-                    }
-				},
-			});
-
-		},
-	});
-
-    $.ajax({
-		type: 'GET',
-		url:
-			'https://wakatime.com/share/@dxnger_/e0880349-33d8-4683-981b-1ca28c40e0e0.json',
-		dataType: 'jsonp',
-		success: function (response) {
-            const totalTime = []
-			const dateLabel = []
-
-			var date = response.data.map(function (e) {
-				return e.range.date;
-			});
-
-			var totalSeconds = response.data.map(function (e) {
-				return e.grand_total.total_seconds;
-			});
-
-            for (let i = 0; i < totalSeconds.length; i++) {
-                const element = totalSeconds[i];
-                const hours = moment.utc(element * 1000).format('HH:mm:ss');
-                totalTime.push(hours)
-            }
-
-			
-
-            console.log(totalTime);
-
-			var day = response.data.map(function (e) {
-				return e.range.text;
-			});
-
-			let chartTime = document.getElementById('chartTime').getContext('2d');
-
-			let time = new Chart(chartTime, {
-				type: 'line',
-				data: {
-					labels: day,
-					datasets: [
-						{
-							label: 'Coding Activity for 7 days',
-							data: totalSeconds,
-							borderColor: 'rgba(220,20,20,1)',
-							backgroundColor: 'rgba(220,20,20,0.5)',
-						},
-					],
-				},
-				options: {
-					scales: {
-						x: {
-							type: 'timeseries',
-						},
+		let langu = new Chart(chartLang, {
+			type: 'doughnut',
+			data: {
+				labels: names,
+				datasets: [
+					{
+						data: percent,
+						backgroundColor: colors,
 					},
+				],
+			},
+			options: {
+				legend: {
+					position: 'left',
+					labels: {
+						boxWidth: 3,
+					},
+					fullWidth: true,
 				},
-			});
-		},
-	});
+			},
+		});
 
-	$.ajax({
-		url: 'http://api.whatpulse.org/user.php?user='. $username,
-		dataType: 'jsonp',
-		success: function (response) {
-			
-		}
-	});
-})
+		// Editors
+
+		const color = ['#1f9aef', '#dc9658', '#E95FC6'];
+
+		const ide = data.editors.map(function (e) {
+			return e.name;
+		});
+
+		const rate = data.editors.map(function (e) {
+			return e.percent;
+		});
+
+		let chartEditor = document
+			.getElementById('chartEditors')
+			.getContext('2d');
+
+		let editor = new Chart(chartEditor, {
+			type: 'horizontalBar',
+			data: {
+				labels: ide,
+				datasets: [
+					{
+						data: rate,
+						backgroundColor: color,
+					},
+				],
+			},
+			options: {
+				legend: {
+					display: false,
+				},
+			},
+		});
+
+		// OS
+
+		const OS = data.operating_systems.map(function (e) {
+			return e.name;
+		});
+
+		const OSrate = data.operating_systems.map(function (e) {
+			return e.percent;
+		});
+
+		let operating_systems = new Chart(chartOS, {
+			type: 'bar',
+			data: {
+				labels: OS,
+				datasets: [
+					{
+						data: OSrate,
+						backgroundColor: ['#16ce40', '#563d7c', '#E95FC6'],
+					},
+				],
+			},
+			options: {
+				legend: {
+					display: false,
+				},
+			},
+		});
+
+		// Pulse
+
+		const total = data.total;
+		const daily = data.daily;
+		const mouse = data.mouse_clicks;
+		const keyboard = data.keys_typed;
+
+		
+
+
+		let template = `
+		<ul class="collection with-header">
+			<li class="collection-header"><h4>Pulse</h4></li>
+			<li class="collection-item"><i class="tiny material-icons">access_time</i> Hours coded(last week): ${total}</li>
+			<li class="collection-item"><i class="tiny material-icons">av_timer</i> Daily coding time average: ${daily}</li>
+			<li class="collection-item"><i class="tiny material-icons">keyboard</i> Keys Typed: ${keyboard}</li>
+			<li class="collection-item"><i class="tiny material-icons">mouse</i> Mouse Clicks: ${mouse}</li>
+		</ul>
+	`;
+		$('#pulse').html(template);
+	})
+
+	
+
+
+} catch (error) {
+	console.error(error);
+}

@@ -6,7 +6,11 @@ const router = express.Router();
 // @route   GET /auth/wakatime
 router.get(
 	'/wakatime',
-	passport.authenticate('oauth2', { scope: ['email,read_stats'] })
+	passport.authenticate('oauth2', {
+		scope: [
+			'email,read_logged_time,write_logged_time,read_stats,read_orgs,read_private_leaderboards,write_private_leaderboards',
+		],
+	})
 );
 
 // @desc    Wakatime auth callback
@@ -14,7 +18,9 @@ router.get(
 router.get(
 	'/wakatime/callback',
 	passport.authenticate('oauth2', {
-		scope: ['email,read_stats'],
+		scope: [
+			'email,read_logged_time,write_logged_time,read_stats,read_orgs,read_private_leaderboards,write_private_leaderboards',
+		],
 		failureRedirect: '/',
 	}),
 	function (req, res) {

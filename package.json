@@ -23,6 +23,7 @@
     "moment": "^2.29.1",
     "mongoose": "^5.11.18",
     "morgan": "^1.10.0",
+    "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
     "passport-oauth2": "^1.5.0",
     "qs": "^6.7.0",
