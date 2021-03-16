@@ -15,9 +15,22 @@ router.get('/', ensureGuest, (req, res) => {
 // @desc    Dashboard
 // @route   GET /
 router.get('/dashboard', ensureAuth, async (req, res) => {
-	res.render('dashboard', {
-		name: req.user.userName,
-	});
+
+	try {
+
+		const user = req.user.userName;
+
+		res.render('dashboard', {
+			name: req.user.userName,
+			//data
+		});
+
+	} catch (err) {
+		console.error(err);
+		res.render('error/505')
+	}
+
+	
 });
 
 router.get('/stats', ensureAuth, async (req, res) => {
