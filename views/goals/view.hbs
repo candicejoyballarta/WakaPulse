@@ -1,0 +1,37 @@
+<h3>Goals</h1>
+<h4>Get productive now, {{name}}</h4>
+{{#if goals}}
+    {{#each goals}}
+    <div class="card teal">
+        <div class="card-image">
+            {{{editIcon _id}}}
+        </div>
+        <div class="card-content white-text">
+            <span class="card-title">{{title}}</span>
+            <p>Goal Type: {{goalType}}</p>
+            {{#ifEquals frequency 'weekly'}}
+                <p>Streak: {{streak}} Weeks</p>
+            {{else}}
+                <p>Streak: {{streak}} Days</p>
+            {{/ifEquals }}
+            <p>Created: {{formatDate createdAt 'MMMM DD YYYY, hh:mm:ss a'}}</p>
+            <p>Updated: {{formatDay updatedAt}}</p>
+        </div>
+        <div class="card-action">
+            {{#doneToday updatedAt}}
+            <form action="/goals/{{_id}}" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="streak" value="{{incVal streak}}">
+                <button type="submit" id="checked" class="btn btn-float mute-button MuteOff green"><i class="fas fa-check"></i></button>
+            </form>
+            {{/doneToday}}
+            <form action="/goals/{{_id}}" method="POST" id="delete-form">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn red"><i class="fas fa-trash"></i></button>
+            </form>
+        </div>
+    </div>
+    {{/each}}
+{{else}}
+<p>You have not set any goals yet</p>
+{{/if}}

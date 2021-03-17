@@ -3,6 +3,7 @@ const fetch = require('node-fetch');
 const router = express.Router();
 const moment = require('moment');
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
+const mailController = require('../controllers/mailController');
 
 // @desc    Login/Landing page
 // @route   GET /
@@ -29,7 +30,6 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
 		console.error(err);
 		res.render('error/505')
 	}
-
 	
 });
 
@@ -45,7 +45,7 @@ router.get('/stats', ensureAuth, async (req, res) => {
 		`http://api.whatpulse.org/user.php?user=${user}&format=json`
 	)
 	.catch(function () {
-		console.log("error");
+		console.log("error on whatPulse");
 	})
 	const pulse_json = await pulse_res.json();
 
@@ -63,6 +63,8 @@ router.get('/stats', ensureAuth, async (req, res) => {
 	res.json(data)
 
 });
+
+router.post('/send/stats', ensureAuth, mailController.sendStats);
 
 
 module.exports = router;

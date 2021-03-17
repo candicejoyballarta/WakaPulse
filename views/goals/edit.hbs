@@ -1,0 +1,43 @@
+<h3>Edit Goal</h3>
+<div class="row">
+    <form action="/goals/{{goal._id}}" method="POST" class="col s12">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="title" id="title" value="{{goal.title}}">
+                <label for="title">Goal Title</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="goalType" id="goalType" value="{{goal.goalType}}">
+                <label for="goalType">What goal do you want to Create?(Coding, Building, Typing)</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <select name="frequency" id="frequency">
+                    {{#select goal.frequency}}
+                    <option value="daily" selected>Daily</option>
+                    <option value="weekly">Weekly</option>
+                    {{/select}}
+                </select>
+                <label for="frequency">Frequency</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="number" id="streaks" name="streak" min="0" max="100" value="{{goal.streak}}">
+                <label for="streaks">Streaks</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Update goal</button>
+        <a href="/goals" class="btn btn-danger" id="cancel-goal"><i class="fa fa-times"></i> Cancel</a>
+    </form>
+</div>
+
+

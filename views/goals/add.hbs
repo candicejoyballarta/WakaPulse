@@ -1,34 +1,34 @@
 <h3>Add Goal</h3>
-<div id="add-goal-form" class="rounded bg-blue shadow p-3 mb-5">
-        <form action="/goals" method="POST" >
-            <div class="form-group">
-                <label for="inputAddress">What goal you want to Create?</label>
-                <input type="text" class="form-control" id="inputTitle" name="goal" placeholder="Enter the name" required>
+<div class="row">
+    <form action="/goals" method="post" class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="title" id="title">
+                <label for="title">Goal Title</label>
             </div>
-            <div class="form-group">
-                <label for="inputAddress2">What do you want to Achieve?</label>
-                <input type="text" class="form-control" id="inputAddress2" name="description" placeholder="Enter your goal" required>
-            </div>
+        </div>
 
-            <div class="form-group">
-                <label for="inputEnd">Goal Day (Optional)</label>
-                <input type="date" class="form-control" name="end" id="inputEnd">
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="goalType" id="goalType">
+                <label for="goalType">What goal do you want to Create?(Coding, Building, Typing)</label>
             </div>
-            <div class="form-group">
-                <label for="inputEnd">Time</label>
-                <input type="time" class="form-control" name="time" id="inputEnd" required>
-            </div>
-            <div class="form-group ">
-                <label for="inputState">Frequency</label>
-                <select id="inputState" class="form-control" name="frequency">
-                    <option>Twice a Day</option>
-                    <option selected>Daily</option>
-                    <option>Weekly</option>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <select name="frequency" id="frequency">
+                    <option value="daily" selected>Daily</option>
+                    <option value="weekly">Weekly</option>
                 </select>
+                <label for="frequency">Frequency</label>
             </div>
+        </div>
 
-            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Create goal</button>
-            <button type="button" class="btn btn-danger" id="cancel-goal"><i class="fa fa-times"></i> Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Create goal</button>
+        <a href="/goals" class="btn btn-danger" id="cancel-goal"><i class="fa fa-times"></i> Cancel</a>
+    </form>
+</div>
 
-        </form>
-    </div>
+
+

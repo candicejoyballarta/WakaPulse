@@ -4,7 +4,7 @@ try {
 	fetch(api_url)
 	.then(response => response.json())
 	.then(data => {
-		console.log(data);
+		console.log(data.languages);
 
 		const colors = [
 			'#f1e05a',
@@ -139,3 +139,4 @@ try {
 } catch (error) {
 	console.error(error);
 }
+
