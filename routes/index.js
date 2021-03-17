@@ -66,5 +66,8 @@ router.get('/stats', ensureAuth, async (req, res) => {
 
 router.post('/send/stats', ensureAuth, mailController.sendStats);
 
+router.get('/wakatime', ensureAuth, async (req, res) => {
+	res.render('wakatime/view')
+})
 
 module.exports = router;
