@@ -35,4 +35,8 @@ router.get('/date', async (req, res) => {
 	res.send(formatted)
 })
 
+router.get('/whatpulse', ensureAuth, async (req, res) => {
+	res.render('whatpulse/view')
+})
+
 module.exports = router;
