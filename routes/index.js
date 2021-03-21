@@ -70,4 +70,8 @@ router.get('/wakatime', ensureAuth, async (req, res) => {
 	res.render('wakatime/view')
 })
 
+router.get('/whatpulse', ensureAuth, async (req, res) => {
+	res.render('whatpulse/view')
+})
+
 module.exports = router;
