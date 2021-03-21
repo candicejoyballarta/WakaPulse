@@ -113,3 +113,33 @@ module.exports.updateGoal = async (req, res) => {
         res.redirect('/goals')
 	}
 }
+
+module.exports.detailGoal = async (req, res) => {
+    let goal = await Goal.findById(req.params.id).lean()
+
+    let date = new Date();
+	let formatted = moment(date).format('YYYY-MM-DD');
+
+    const data = fetch(
+		`https://wakatime.com/api/v1/users/current/heartbeats?date=${formatted}`
+	).then((res) => response.json())
+    .then((data) => {
+        
+    })
+    .catch((err) => {
+        
+    });;
+
+    if (!goal) {
+        return res.render('error/404');
+    }
+
+    if (goal.user != req.user._id) {
+		res.redirect('/goals');
+	} else {
+		res.render('goals/details', {
+			goal,
+		});
+	}
+
+}

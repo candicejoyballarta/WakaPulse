@@ -74,3 +74,9 @@ module.exports.sendStats = async (req, res) => {
     
 }
 
+module.exports.viewMailStats = async (req, res) => {
+	res.render('mails/share', {
+		layout: 'mail'
+	}) 
+}
+

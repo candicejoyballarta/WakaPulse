@@ -23,7 +23,7 @@ router.put('/:id', ensureAuth, goalsController.updateGoal)
 router.delete('/:id', ensureAuth, goalsController.deleteGoal);
 
 // Goal details
-//router.get('/edit/:id', ensureAuth, goalController.updateGoal)
+router.get('/details/:id', ensureAuth, goalsController.detailGoal)
 
 
 module.exports = router;
