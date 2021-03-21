@@ -25,7 +25,10 @@ router.get('/wakatime', ensureAuth, async (req, res) => {
 })
 
 router.get('/whatpulse', ensureAuth, async (req, res) => {
-	res.render('whatpulse/view');
+	const user = req.user.userName
+	res.render('whatpulse/view', {
+		name: user
+	})
 });
 
 router.get('/date', async (req, res) => {
@@ -33,10 +36,6 @@ router.get('/date', async (req, res) => {
 	let formatted = moment(date).format("YYYY-MM-DD")
 
 	res.send(formatted)
-})
-
-router.get('/whatpulse', ensureAuth, async (req, res) => {
-	res.render('whatpulse/view')
 })
 
 module.exports = router;
