@@ -11,15 +11,15 @@
     <title>WakaPulse Login</title>
 </head>
 <body>
-    <div class="container login-container">
-        <div class="card">
-            <div class="card-content">
-                {{{body}}}
-            </div>
-        </div>
+    {{> _header}}
+    <div class="container mail-container">
+        {{{body}}}
     </div>
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        M.Sidenav.init(document.querySelector('.sidenav'))
+    </script>
 </body>
 </html>
