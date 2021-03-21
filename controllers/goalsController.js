@@ -117,6 +117,8 @@ module.exports.updateGoal = async (req, res) => {
 module.exports.detailGoal = async (req, res) => {
     let goal = await Goal.findById(req.params.id).lean()
 
+    
+
     let date = new Date();
 	let formatted = moment(date).format('YYYY-MM-DD');
 

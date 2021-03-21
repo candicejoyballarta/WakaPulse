@@ -27,7 +27,7 @@ module.exports.getStats = async (req, res) => {
 
     // Fetching data from WakaTime
 	const fetch_res = await fetch(
-		`https://wakatime.com/api/v1/users/${user}/stats/last_7_days`
+		`https://wakatime.com/api/v1/users/current/stats/last_7_days`
 	);
 	const json = await fetch_res.json();
 
