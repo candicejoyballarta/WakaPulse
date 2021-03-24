@@ -36,7 +36,9 @@ router.get('/wakatime', ensureAuth, async (req, res) => {
 // @route   GET /whatpulse
 router.get('/whatpulse', ensureAuth, async (req, res) => {
 	const user = req.user.userName
-	res.render('whatpulse/view');
+	res.render('whatpulse/view', {
+		name: user
+	})
 });
 
 // @desc    Dashboard
