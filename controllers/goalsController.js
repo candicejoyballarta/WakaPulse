@@ -1,5 +1,7 @@
 const Goal = require('../models/Goal');
 const express = require('express');
+const moment = require('moment');
+const fetch = require('node-fetch');
 
 // List all Goals
 module.exports.indexGoal = async (req, res) => {
@@ -114,23 +116,8 @@ module.exports.updateGoal = async (req, res) => {
 	}
 }
 
-module.exports.detailGoal = async (req, res) => {
+module.exports.detailGoalView = async (req, res) => {
     let goal = await Goal.findById(req.params.id).lean()
-
-    
-
-    let date = new Date();
-	let formatted = moment(date).format('YYYY-MM-DD');
-
-    const data = fetch(
-		`https://wakatime.com/api/v1/users/current/heartbeats?date=${formatted}`
-	).then((res) => response.json())
-    .then((data) => {
-        
-    })
-    .catch((err) => {
-        
-    });;
 
     if (!goal) {
         return res.render('error/404');
@@ -140,8 +127,39 @@ module.exports.detailGoal = async (req, res) => {
 		res.redirect('/goals');
 	} else {
 		res.render('goals/details', {
+            layout: 'details',
 			goal,
 		});
 	}
 
 }
+
+module.exports.detailGoal = async (req, res) => {
+    const user = req.user.userName;
+	let goal = await Goal.findById(req.params.id).lean();
+
+    let goal_date = goal.createdAt
+    let sdate = moment(goal_date).format('YYYY-MM-DD')
+    let date = new Date();
+	let ftoday = moment(date).format('YYYY-MM-DD');
+
+    fetch(
+		`https://wakatime.com/api/v1/users/${user}/summaries?start=${sdate}&end=${ftoday}`
+	)
+		.then((result) => result.json())
+		.then((data) => {
+			console.log(data);
+		}).catch((err) => {
+            console.log(err);
+        });
+
+	if (!goal) {
+		return res.render('error/404');
+	}
+
+	if (goal.user != req.user._id) {
+		res.redirect('/goals');
+	} else {
+		res.json(goal)
+	}
+};

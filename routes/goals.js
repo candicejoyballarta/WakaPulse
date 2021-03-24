@@ -1,7 +1,9 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router()
 
 const goalsController = require('../controllers/goalsController');
+const homeController = require('../controllers/homeController');
 const { ensureAuth } = require('../middleware/auth');
 
 // List of goals
@@ -23,7 +25,8 @@ router.put('/:id', ensureAuth, goalsController.updateGoal)
 router.delete('/:id', ensureAuth, goalsController.deleteGoal);
 
 // Goal details
-router.get('/details/:id', ensureAuth, goalsController.detailGoal)
+router.get('/details/:id', ensureAuth, goalsController.detailGoalView)
+router.get('/detail/:id', ensureAuth, homeController.detailGoal)
 
 
 module.exports = router;

@@ -52,5 +52,6 @@ module.exports = {
 	incVal: function (value) {
 		return parseInt(value) + 1;
 	}
+
 };
 

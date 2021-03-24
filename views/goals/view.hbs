@@ -7,7 +7,7 @@
             {{{editIcon _id}}}
         </div>
         <div class="card-content white-text">
-            <span class="card-title">{{title}}</span>
+            <a href="/goals/details/{{_id}}"><span class="card-title">{{title}}</span></a>
             <p>Goal Type: {{goalType}}</p>
             {{#ifEquals frequency 'weekly'}}
                 <p>Streak: {{streak}} Weeks</p>

@@ -11,8 +11,15 @@
 
         <div class="row">
             <div class="input-field col s6">
-                <input type="text" name="goalType" id="goalType" value="{{goal.goalType}}">
-                <label for="goalType">What goal do you want to Create?(Coding, Building, Typing)</label>
+                <select name="goalType" id="goalType">
+                    {{#select goal.goalType}}
+                    <option value="Coding">Coding</option>
+                    <option value="Building">Building</option>
+                    <option value="Learning">Learning</option>
+                    <option value="Typing">Typing</option>
+                    {{/select}}
+                </select>
+                <label for="goalType">What goal do you want to Create?</label>
             </div>
         </div>
 
@@ -20,7 +27,7 @@
             <div class="input-field col s6">
                 <select name="frequency" id="frequency">
                     {{#select goal.frequency}}
-                    <option value="daily" selected>Daily</option>
+                    <option value="daily">Daily</option>
                     <option value="weekly">Weekly</option>
                     {{/select}}
                 </select>
