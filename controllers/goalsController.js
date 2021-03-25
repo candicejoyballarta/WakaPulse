@@ -135,23 +135,19 @@ module.exports.detailGoalView = async (req, res) => {
 }
 
 module.exports.detailGoal = async (req, res) => {
-    const user = req.user.userName;
+	const api = process.env.SECRET_API;
+	const user = req.user.userName;
 	let goal = await Goal.findById(req.params.id).lean();
 
-    let goal_date = goal.createdAt
-    let sdate = moment(goal_date).format('YYYY-MM-DD')
-    let date = new Date();
+	let goal_date = goal.createdAt;
+	let sdate = moment(goal_date).format('YYYY-MM-DD');
+	let date = new Date();
 	let ftoday = moment(date).format('YYYY-MM-DD');
 
-    fetch(
-		`https://wakatime.com/api/v1/users/${user}/summaries?start=${sdate}&end=${ftoday}`
-	)
-		.then((result) => result.json())
-		.then((data) => {
-			console.log(data);
-		}).catch((err) => {
-            console.log(err);
-        });
+	const fetch_res = await fetch(
+		`https://wakatime.com/api/v1/users/${user}/summaries?start=${sdate}&end=${ftoday}&api_key=${api}`
+	);
+	const json = await fetch_res.json();
 
 	if (!goal) {
 		return res.render('error/404');
@@ -160,6 +156,7 @@ module.exports.detailGoal = async (req, res) => {
 	if (goal.user != req.user._id) {
 		res.redirect('/goals');
 	} else {
-		res.json(goal)
+		res.json(json);
 	}
+
 };

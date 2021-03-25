@@ -26,7 +26,7 @@ router.delete('/:id', ensureAuth, goalsController.deleteGoal);
 
 // Goal details
 router.get('/details/:id', ensureAuth, goalsController.detailGoalView)
-router.get('/detail/:id', ensureAuth, homeController.detailGoal)
+router.get('/detail/:id', ensureAuth, goalsController.detailGoal)
 
 
 module.exports = router;

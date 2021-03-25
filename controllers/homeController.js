@@ -54,31 +54,3 @@ module.exports.getStats = async (req, res) => {
 	//console.log(json);
 	res.json(data);
 }
-
-module.exports.detailGoal = async (req, res) => {
-	const user = req.user.userName;
-	let goal = await Goal.findById(req.params.id).lean();
-
-	let goal_date = goal.createdAt;
-	let sdate = moment(goal_date).format('YYYY-MM-DD');
-	let date = new Date();
-	let ftoday = moment(date).format('YYYY-MM-DD');
-
-	const summary = await fetch(
-		`https://wakatime.com/api/v1/users/${user}/durations?date=${ftoday}`
-	);
-
-	const sum_json = await summary.json();
-	console.log(sum_json);
-
-	if (!goal) {
-		return res.render('error/404');
-	}
-
-	if (goal.user != req.user._id) {
-		res.redirect('/goals');
-	} else {
-		res.json(summary);
-
-	}
-};
