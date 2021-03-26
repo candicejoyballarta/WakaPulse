@@ -6,13 +6,14 @@
 </div>
 <div class="divider"></div>
 <div class="section">
-    <form action="/send/stats" method="post">
+    <form action="/share/stats" method="POST">
+        {{msg}}
         <div class="input-field">
             <input type="email" name="email" id="email">
             <label for="email">Email</label>
-            <a href="/share/stats" class="btn green darken-1">
+            <button type="submit" class="btn green darken-1">
                 Send me my stats
-            </a>    
+            </button>    
         </div>
     </form>
 </div>

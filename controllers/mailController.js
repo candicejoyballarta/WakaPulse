@@ -3,6 +3,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 
 module.exports.sendStats = async (req, res) => {
+
 	try {
         const user = req.user.userName;
 		const email = req.body.email;
@@ -67,6 +68,11 @@ module.exports.sendStats = async (req, res) => {
 			}
 			console.log('Message sent: ' + info.response);
 		});
+
+		res.render('mails/share', {
+			layout: 'mail',
+			msg: 'Email sent!'
+		}); 
     } catch (err) {
         console.error(err);
     }
