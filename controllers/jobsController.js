@@ -9,6 +9,7 @@ module.exports.getJobs = async (req, res) => {
     const desc = req.body.description;
     const loc = req.body.location;
 
+    // Fetching data from GitHub Jobs
     const fetch_res = await fetch(
         `https://jobs.github.com/positions.json?description=${desc}&location=${loc}`
     );
