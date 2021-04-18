@@ -46,6 +46,24 @@ router.get('/whatpulse', ensureAuth, async (req, res) => {
 	})
 });
 
+// @desc    WhatPulse view
+// @route   GET /whatpulse
+router.get('/gitter', ensureAuth, async (req, res) => {
+	const user = req.user.userName
+	res.render('whatpulse/view', {
+		name: user
+	})
+});
+
+// @desc    WhatPulse view
+// @route   GET /whatpulse
+router.get('/github', ensureAuth, async (req, res) => {
+	const user = req.user.userName
+	res.render('whatpulse/view', {
+		name: user
+	})
+});
+
 // @desc    Dashboard
 // @route   GET /dashboard
 router.get('/date', async (req, res) => {

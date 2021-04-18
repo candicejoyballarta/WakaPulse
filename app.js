@@ -73,7 +73,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/goals', require('./routes/goals'))
-
+app.use('/githubjobs', require('./routes/githubjobs'));
 
 
 const PORT = process.env.PORT || 3000

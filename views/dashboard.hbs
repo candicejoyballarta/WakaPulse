@@ -1,7 +1,7 @@
 <h5>Dashboard</h5>
 <h4>Welcome, {{name}}</h4>
 
-<div class="content">
+<div class="content ">
     <div class="container-fluid">
         <div class="dash-row center">
             <div class="card">
@@ -28,4 +28,24 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Trigger -->
+<div class="fixed-action-btn">
+    <a href="#modal1" class="btn-floating btn-large waves-effect waves-lightred modal-trigger"><i class="fas fa-envelope-open-text"></i></a>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+        <h4>Messages</h4>
+        <p>This is your inbox</p>
+    </div>
+    <ul class="collection">
+        <li class="collection-item avatar">
+            <img src="images/WakaPulse.ico" alt class="circle">
+            <a href="#"><span class="title">Group Name</span></a>
+        </li>
+    </ul>
+</div>
+
 

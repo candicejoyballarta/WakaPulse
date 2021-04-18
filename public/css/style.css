@@ -30,6 +30,11 @@
 	margin-left: auto;
 }
 
+.dash-row {
+	display: flex;
+	justify-content: center;
+}
+
 
 h3 {
 	font-weight: 900;

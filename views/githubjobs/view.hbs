@@ -1,0 +1,36 @@
+<h3>Github Jobs</h3>
+<div class="row">
+    <div class="col s12">
+        <div class="row">
+            <form action="/githubjobs/search" method="post">
+                <div class="input-field col s10">
+                <i class="material-icons prefix">search</i>
+                <input type="text" id="search" name="search">
+                <label for="search">Search..</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" id="jobSubmit">Search
+            </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{{#if jobs}}
+<p>Showing results for: {{desc}}</p>
+<ul class="collapsible">
+    {{#each jobs}}
+        <li>
+            <div class="collapsible-header">
+                {{title}}
+                <span class="new badge" data-badge-caption="{{type}}"></span>
+            </div>
+            <div class="collapsible-body">
+                {{{description}}}
+            </div>
+        </li>
+    {{/each}}
+</ul>
+{{else}}
+<p>Enter a programming language to find a job</p>
+{{/if}}
