@@ -6,6 +6,7 @@ const passport = require('passport');
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 const mailController = require('../controllers/mailController');
 const homeController = require('../controllers/homeController');
+const jobsController = require('../controllers/jobsController');
 
 // @desc    Login/Landing page
 // @route   GET /

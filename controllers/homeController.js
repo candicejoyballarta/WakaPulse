@@ -1,7 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const Goal = require('../models/Goal');
-const moment = require('moment');
 
 module.exports.loginPage = (req, res) => {
     res.render('login', {
