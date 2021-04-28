@@ -11,11 +11,14 @@ module.exports.loginPage = (req, res) => {
 module.exports.mainDashboard = async (req, res) => {
     try {
 		const user = req.user.userName;
+		const token = req.accessToken;
 
 		res.render('dashboard', {
 			name: user,
+			accessToken: token,
             layout: 'dashboard'
 		});
+
 	} catch (err) {
 		console.error(err);
 		res.render('error/500');
@@ -38,6 +41,7 @@ module.exports.getStats = async (req, res) => {
 	).catch(function () {
 		console.log('error on whatPulse');
 	});
+	
 	const pulse_json = await pulse_res.json();
 
 	const data = {

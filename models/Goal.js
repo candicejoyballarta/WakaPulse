@@ -10,20 +10,20 @@ const GoalSchema = new mongoose.Schema({
 		default: 'coding',
 		required: true,
 	},
-	frequency: {
+	unit: {
 		type: String,
-		default: 'daily',
-		enum: ['daily', 'weekly'],
+		default: 'commit',
+		required: true,
 	},
-	streak: {
-		type: Number,
-		default: 0,
+	graphId: {
+		type: String,
+		required: true,
 	},
 	user: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
 		required: true,
-	}
+	},
 });
 
 GoalSchema.set('timestamps', true)

@@ -1,7 +1,8 @@
 <h3>{{goal.title}}</h3>
 <div class="section">
     Goal Type: {{goal.goalType}} <br>
-    Created At: {{goal.createdAt}}
+    Created At: {{goal.createdAt}} <br>
+    <a href="https://pixe.la/v1/users/{{name}}/graphs/{{goal.graphId}}.html?mode=simple" target="_blank" class="waves-effect waves-light btn">Show Graph</a>
 </div>
 <canvas id="chartSummary"></canvas>
 

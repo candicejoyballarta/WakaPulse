@@ -1,5 +1,6 @@
 const Strategy = require('passport-oauth2')
 const mongoose = require('mongoose');
+const fetch = require('node-fetch');
 const User = require('../models/User');
 const https = require('https');
 const { InternalOAuthError } = require('passport-oauth2');
@@ -48,15 +49,19 @@ module.exports = function(passport) {
                 displayName: profile.displayName,
                 location: profile.location,
                 photo: profile.photo,
-                createdAt: profile.createdAt
+                createdAt: profile.createdAt,
+                token: accessToken
             }
+
 
             try {
                 let user = await User.findOne({ wakatimeId: profile.id })
+                
 
                 if(user) {
                     done(null, user)
                 } else {
+
                     user = await User.create(newUser)
                     done(null, user)
                 }

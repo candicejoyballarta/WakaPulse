@@ -6,7 +6,6 @@ const passport = require('passport');
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 const mailController = require('../controllers/mailController');
 const homeController = require('../controllers/homeController');
-const jobsController = require('../controllers/jobsController');
 
 // @desc    Login/Landing page
 // @route   GET /
@@ -41,15 +40,6 @@ router.get('/wakatime', ensureAuth, async (req, res) => {
 // @desc    WhatPulse view
 // @route   GET /whatpulse
 router.get('/whatpulse', ensureAuth, async (req, res) => {
-	const user = req.user.userName
-	res.render('whatpulse/view', {
-		name: user
-	})
-});
-
-// @desc    WhatPulse view
-// @route   GET /whatpulse
-router.get('/gitter', ensureAuth, async (req, res) => {
 	const user = req.user.userName
 	res.render('whatpulse/view', {
 		name: user

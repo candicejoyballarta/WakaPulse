@@ -22,7 +22,7 @@ router.get('/edit/:id', ensureAuth, goalsController.editGoal)
 router.put('/:id', ensureAuth, goalsController.updateGoal)
 
 //Delete
-router.delete('/:id', ensureAuth, goalsController.deleteGoal);
+router.delete('/:id-:graphId', ensureAuth, goalsController.deleteGoal);
 
 // Goal details
 router.get('/details/:id', ensureAuth, goalsController.detailGoalView)

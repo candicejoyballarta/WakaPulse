@@ -9,23 +9,21 @@
         <div class="card-content white-text">
             <a href="/goals/details/{{_id}}"><span class="card-title">{{title}}</span></a>
             <p>Goal Type: {{goalType}}</p>
-            {{#ifEquals frequency 'weekly'}}
-                <p>Streak: {{streak}} Weeks</p>
-            {{else}}
-                <p>Streak: {{streak}} Days</p>
-            {{/ifEquals }}
+            <p>Unit: {{unit}}</p>
             <p>Created: {{formatDate createdAt 'MMMM DD YYYY, hh:mm:ss a'}}</p>
             <p>Updated: {{formatDay updatedAt}}</p>
+            <p>Graph ID: {{graphId}}</p>
         </div>
         <div class="card-action">
             {{#doneToday updatedAt}}
-            <form action="/goals/{{_id}}" method="POST">
-                <input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="streak" value="{{incVal streak}}">
+            <form action="/pixela/pixel" method="POST">
+                <input type="hidden" name="quantity" value="1">
+                <input type="hidden" name="graphID" value={{graphId}}>
+                <input type="hidden" name="date" value="{{dateToday}}">
                 <button type="submit" id="checked" class="btn btn-float mute-button MuteOff green"><i class="fas fa-check"></i></button>
             </form>
             {{/doneToday}}
-            <form action="/goals/{{_id}}" method="POST" id="delete-form">
+            <form action="/goals/{{_id}}-{{graphId}}" method="POST" id="delete-form">
                 <input type="hidden" name="_method" value="DELETE">
                 <button type="submit" class="btn red"><i class="fas fa-trash"></i></button>
             </form>

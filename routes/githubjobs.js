@@ -13,6 +13,15 @@ router.get('/', ensureAuth, async (req, res) => {
 	})
 });
 
+// @desc    Github Jobs view
+// @route   GET /githubjobs
+router.get('/index', ensureAuth, async (req, res) => {
+	res.render('githubjobs/index', {
+		name: user,
+        layout: 'jobs'
+	})
+});
+
 // @desc    Github Jobs search
 // @route   POST /githubjobs/search
 router.post('/search', ensureAuth, async (req, res) => {
