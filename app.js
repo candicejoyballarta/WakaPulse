@@ -42,10 +42,10 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Handlebar Helpers
-const { formatDate, editIcon, select, formatDay, ifEquals, doneToday, incVal } = require('./helpers/hbs')
+const { formatDate, editIcon, select, formatDay, ifEquals, doneToday, incVal, dateToday } = require('./helpers/hbs')
 
 // Handlebars
-app.engine('.hbs', exphbs({ helpers: { formatDate, editIcon, select, formatDay, ifEquals, doneToday, incVal }, defaultLayout: 'main', extname: '.hbs' }));
+app.engine('.hbs', exphbs({ helpers: { formatDate, editIcon, select, formatDay, ifEquals, doneToday, incVal, dateToday }, defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
 // Sessions
@@ -74,6 +74,7 @@ app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
 app.use('/goals', require('./routes/goals'))
 app.use('/githubjobs', require('./routes/githubjobs'));
+app.use('/pixela', require('./routes/pixela'));
 
 
 const PORT = process.env.PORT || 3000

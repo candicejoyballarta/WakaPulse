@@ -3,7 +3,7 @@ try {
 	fetch(api_url)
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data.languages);
+			console.log(data);
 
 			const colors = [
 				'#f1e05a',

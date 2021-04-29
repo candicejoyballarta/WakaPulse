@@ -1,31 +1,18 @@
-<h3>Add Goal</h3>
-<div class="row">
-    <form action="/goals" method="post" class="col s12">
-        <div class="row">
-            <div class="input-field col s3">
-                <input id="name" name="name" type="text" class="validate">
-                <label for="name">Name</label>
-            </div>
-        </div>
+{{json.message}}
 
-        <div class="row">
-            <div class="input-field col s6">
-                <select name="goalType" id="goalType">
-                    <option value="Coding" selected>Coding</option>
-                    <option value="Building">Building</option>
-                    <option value="Learning">Learning</option>
-                    <option value="Typing">Typing</option>
-                </select>
-                <label for="goalType">What goal do you want to Create?</label>
-            </div>
-        </div>
-        <h3>Goal Graph</h3>
+<h4>Create graphs</h4>
+
+<div class="row">
+    <form action="/pixela/graph" method="POST" class="col s12">
         <div class="row">
             <div class="input-field col s3">
                 <input name="id" id="id" type="text" class="validate">
                 <label for="id">ID</label>
             </div>
-            
+            <div class="input-field col s3">
+                <input id="name" name="name" type="text" class="validate">
+                <label for="name">Name</label>
+            </div>
             <div class="input-field col s3">
                 <input id="unit" name="unit" type="text" class="validate">
                 <label for="unit">Unit</label>
@@ -66,15 +53,13 @@
                 <select name="isSecret" id="isSecret">
                     <option value="" disabled selected>Choose your option</option>
                     <option value="true">True</option>
+                    <option value="">False</option>
                 </select>
                 <label>Private</label>
             </div>
         </div>
-
-        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Create goal</button>
-        <a href="/goals" class="btn btn-danger" id="cancel-goal"><i class="fa fa-times"></i> Cancel</a>
+        <button class="waves-effect waves-light btn" type="submit">Save</button>
+        <a href="/pixela" class="waves-effect waves-light btn red" id="cancel-goal">Cancel</a>
     </form>
+    
 </div>
-
-
-

@@ -17,6 +17,7 @@ module.exports.indexGoal = async (req, res) => {
         console.error(error);
         res.render('error/500');
     }
+
 }
 
 // Create View Goal
@@ -35,29 +36,43 @@ module.exports.createGoal = async (req, res) => {
 module.exports.addGoal = async (req, res) => {
 
     try {
-
+        const name = req.user.userName;
+		const user = name.toLowerCase();
         req.body.user = req.user._id
 
-        let days = {
-			one: 'none',
-			two: 'none',
-			three: 'none',
-			four: 'none',
-			five: 'none',
-			six: 'none',
-			seven: 'none',
+        const data = {
+			id: req.body.id,
+			name: req.body.name,
+			unit: req.body.unit,
+			type: req.body.type,
+			color: req.body.color,
+			selfSufficient: req.body.selfSufficient,
+            isSecret: req.body.isSecret
 		};
 
-        await Goal.create({
-            user: req.body.user,
-            title: req.body.title,
-            goalType: req.body.goalType,
-            frequency: req.body.frequency,
-            days: days,
-            
-        })
+        const options = {
+			method: 'POST',
+			headers: {
+				'X-USER-TOKEN': 'wakapulse',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		};
 
-        res.redirect('/goals')
+		await fetch(`https://pixe.la/v1/users/${user}/graphs`, options)
+			.then((res) => res.json())
+			.then((json) => {
+                console.log(json);
+				Goal.create({
+					user: req.body.user,
+					title: req.body.name,
+					goalType: req.body.goalType,
+					unit: req.body.unit,
+					graphId: req.body.id,
+				});
+
+                res.redirect('/goals');
+			});
 
     } catch (err) {
         console.error(err);
@@ -69,8 +84,31 @@ module.exports.addGoal = async (req, res) => {
 // Delete goal
 module.exports.deleteGoal = async (req, res) => {
     try {
-        await Goal.remove({ _id: req.params.id })
-        res.redirect('/goals')
+        await Goal.deleteOne({ _id: req.params.id });
+        const name = req.user.userName;
+		const user = name.toLowerCase();
+        let gID = req.params.graphId;
+
+        const options = {
+			method: 'DELETE',
+			headers: {
+				'X-USER-TOKEN': 'wakapulse',
+				'Content-Type': 'application/json',
+			}
+		};
+
+        
+        console.log(req.params.graphId);
+
+        fetch(`https://pixe.la/v1/users/${user}/graphs/${gID}`, options)
+			.then((res) => res.json())
+			.then((json) => {
+
+				
+                res.redirect('/goals');
+			});
+
+        
     } catch (err) {
         console.error(err);
         return res.render('error/500')
@@ -127,7 +165,8 @@ module.exports.detailGoalView = async (req, res) => {
 		res.redirect('/goals');
 	} else {
 		res.render('goals/details', {
-            layout: 'details',
+			layout: 'details',
+			name: req.user.userName,
 			goal,
 		});
 	}
