@@ -60,7 +60,7 @@ router.get('/gitter', ensureAuth, async (req, res) => {
 // @route   GET /whatpulse
 router.get('/github', ensureAuth, async (req, res) => {
 	const user = req.user.userName
-	res.render('whatpulse/view', {
+	res.render('github/view', {
 		name: user
 	})
 });
