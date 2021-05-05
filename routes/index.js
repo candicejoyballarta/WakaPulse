@@ -46,6 +46,24 @@ router.get('/whatpulse', ensureAuth, async (req, res) => {
 	})
 });
 
+// @desc    GitHub Jobs View
+// @route   GET /githubjobs_data
+router.get('/githubjobs_data', ensureAuth, async (req, res) => {
+	res.render('githubjobs_data/view')
+})
+
+// @desc    Pixela View
+// @route   GET /pixela_data
+router.get('/pixela_data', ensureAuth, async (req, res) => {
+	res.render('pixela_data/view')
+})
+
+// @desc    GitHub View
+// @route   GET /github_data
+router.get('/github_data', ensureAuth, async (req, res) => {
+	res.render('github_data/view')
+})
+
 // @desc    WhatPulse view
 // @route   GET /whatpulse
 router.get('/github', ensureAuth, async (req, res) => {
