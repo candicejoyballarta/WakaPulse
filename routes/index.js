@@ -64,14 +64,6 @@ router.get('/github_data', ensureAuth, async (req, res) => {
 	res.render('github_data/view')
 })
 
-// @desc    WhatPulse view
-// @route   GET /whatpulse
-router.get('/github', ensureAuth, async (req, res) => {
-	const user = req.user.userName
-	res.render('github/view', {
-		name: user
-	})
-});
 
 // @desc    Dashboard
 // @route   GET /dashboard

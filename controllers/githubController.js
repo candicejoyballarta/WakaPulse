@@ -6,47 +6,53 @@ module.exports.jobsView = (req, res) => {
     res.render('github/view')
 }
 
-mobile.exports.getGitHub = async (req, res) => {
-    const user = req.user.userName;
+module.exports.githubView = async (req, res) => {
+	const user = req.user.userName;
 
-    const fetch_res = await fetch(
-        `https://api.github.com/users/${user}`
-    );
+    const options = {
+		method: 'GET',
+		headers: {
+			Accept: 'application/vnd.github.inertia-preview+json',
+		},
+	};
 
-    const json = await fetch_res.json;
+	const fetch_res = await fetch(
+		`https://api.github.com/users/${user}/repos`,
+		options
+	)
+		.then((res) => res.json())
+		.then((json) => {
+			res.render('github/view', {
+				name: req.user.userName,
+                json
+			});
+		});
+};
 
-    console.log(fetch_res);
+module.exports.getOrgs = async (req, res) => {
+	const orgs_res = await fetch(`https://api.github.com/orgs/TUPfightON`);
 
-}
+	const orgs_json = await orgs_res.json();
 
-mobile.exports.getOrgs = async (req, res) => {
-    const orgs_res = await fetch(
-        `https://api.github.com/orgs/TUPfightON`
-    );
+	const data = {
+		login: json.login,
+	};
+};
 
-    const orgs_json = await orgs_res.json();
+module.exports.getRepos = async (req, res) => {
+	const repos_res = await fetch(
+		`https://api.github.com/repos/TUPfightON/iBayanihan`
+	);
 
-    const data = {
-        login: json.login
-    }
-}
+	const repos_json = await repos_res.json();
 
-mobile.exports.getRepos = async (req, res) => {
-    const repos_res = await fetch(
-        `https://api.github.com/repos/TUPfightON/iBayanihan`
-    );
+	const data = {
+		name: json.name,
+		full_name: json.full_name,
+		created_at: json.created_at,
+		updated_at: json.updated_at,
+		language: json.language,
+	};
 
-    const repos_json = await repos_res.json();
-
-    const data = {
-        name: json.name,
-        full_name: json.full_name,
-        created_at: json.created_at,
-        updated_at: json.updated_at,
-        language: json.language
-    }
-
-    console.log(json);
-
-
-}
+	console.log(json);
+};

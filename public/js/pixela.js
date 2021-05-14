@@ -12,7 +12,7 @@ try {
                         Name: ${element.name}<br>
                         Unit: ${element.unit}<br>
                     </span>
-                    <a href="https://pixe.la/v1/users/dxnger/graphs/${element.id}.html?mode=simple" target="_blank" class="waves-effect waves-light btn">Details</a>
+                    <a href="https://pixe.la/v1/users/candicejoyballarta/graphs/${element.id}.html?mode=simple" target="_blank" class="waves-effect waves-light btn">Details</a>
                 </div>
             </div>`;
 

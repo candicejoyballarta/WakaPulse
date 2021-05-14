@@ -75,6 +75,7 @@ app.use('/auth', require('./routes/auth'))
 app.use('/goals', require('./routes/goals'))
 app.use('/githubjobs', require('./routes/githubjobs'));
 app.use('/pixela', require('./routes/pixela'));
+app.use('/github', require('./routes/github'));
 
 
 const PORT = process.env.PORT || 3000
